@@ -26,8 +26,8 @@ public class Main {
         ridesCopy.addAll(rides);
 
         for (Car c : cars) {
-            c.takeRide(rides.get(0));
-            jobList.insertRide(c.id, rides.get(0).id);
+            c.takeRide(ridesCopy.get(0));
+            jobList.insertRide(c.id, ridesCopy.get(0).id);
             ridesCopy.remove(0);
             queue.add(c);
         }
