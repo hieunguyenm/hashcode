@@ -21,4 +21,13 @@ public class Jobs {
         carJobs.add(ride);
         jobs.put(car, carJobs);
     }
+
+    public void display() {
+        for(Integer car : jobs.keySet()) {
+            ArrayList<Integer> rides = jobs.getOrDefault(car, new ArrayList<>());
+            System.out.printf("%d %d\n", car, rides.size());
+            rides.forEach(r -> System.out.printf("%d ", r));
+            System.out.println();
+        }
+    }
 }
