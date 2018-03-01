@@ -1,6 +1,5 @@
 import java.io.IOException;
 import java.util.ArrayList;
-import javafx.util.Pair;
 
 public class Main {
     public static final String FILE = "a_example.in";
@@ -11,7 +10,7 @@ public class Main {
         ReadFile reader = new ReadFile();
 
         try {
-            Pair<ArrayList<Ride>, ArrayList<Car>> p =  reader.readFile(FILE);
+            Pair p =  reader.readFile(FILE);
             rides = p.getKey();
             cars = p.getValue();
         } catch (IOException e) {

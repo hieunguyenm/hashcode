@@ -2,10 +2,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
-import javafx.util.Pair;
 
 public class ReadFile {
-    public Pair<ArrayList<Ride>, ArrayList<Car>> readFile(String fileName) throws IOException {
+    public Pair readFile(String fileName) throws IOException {
         Scanner input = new Scanner(new File(fileName));
         int R, C, F, N, B, T;
 
@@ -29,7 +28,7 @@ public class ReadFile {
             rides.add(new Ride(i, tI(temp[0]), tI(temp[1]), tI(temp[2]), tI(temp[3]), tI(temp[4]), tI(temp[5])));
         }
 
-        return new Pair<ArrayList<Ride>, ArrayList<Car>>(rides, cars);
+        return new Pair(rides, cars);
     }
 
     public int tI(String n) {
