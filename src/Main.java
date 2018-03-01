@@ -7,6 +7,7 @@ public class Main {
 
     private static ArrayList<Ride> rides = new ArrayList<>();
     private static ArrayList<Car> cars = new ArrayList<>();
+    private static ArrayList<Ride> ridesCopy = new ArrayList<>();
 
     public static void main(String[] args) {
         ReadFile reader = new ReadFile();
@@ -17,24 +18,38 @@ public class Main {
             Pair p = reader.readFile(FILE);
             rides = p.getKey();
             cars = p.getValue();
+            jobList = new Jobs(cars.size());
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        ridesCopy.addAll(rides);
+
         for (Car c : cars) {
             c.takeRide(rides.get(0));
             jobList.insertRide(c.id, rides.get(0).id);
-            rides.remove(0);
+            ridesCopy.remove(0);
             queue.add(c);
         }
 
-        while (!rides.isEmpty()) {
+        while (!ridesCopy.isEmpty()) {
             Car c = queue.poll();
             int nextRideID = getNext(c);
             c.takeRide(rides.get(nextRideID));
             jobList.insertRide(c.id, nextRideID);
-            rides.remove(nextRideID);
+            ridesCopy.remove(rides.get(nextRideID));
             queue.add(c);
+        }
+
+        for (int i = 0; i < cars.size(); i++) {
+            ArrayList<Integer> jobs = jobList.getRides(i);
+            System.out.print(jobs.size() + " ");
+
+            for (Integer j : jobs) {
+                System.out.print(j + " ");
+            }
+
+            System.out.println();
         }
     }
 
@@ -42,7 +57,7 @@ public class Main {
         int closest = 0;
         int currentDist = Integer.MAX_VALUE;
 
-        for (Ride r : rides) {
+        for (Ride r : ridesCopy) {
             if (Math.abs(r.a - c.currentRide.x) + Math.abs(r.b - c.currentRide.y) < currentDist) {
                 closest = r.id;
             }
