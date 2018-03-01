@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class ReadFile {
-  public void readFile(String fileName) throws IOException{
+  public void readFile(String fileName, ArrayList<Ride> ride, ArrayList<Car> cars) throws IOException{
     Scanner input = new Scanner(new File(fileName));
     int R, C, F, N, B, T;
 
@@ -16,9 +16,9 @@ public class ReadFile {
     B = tI(temp[4]);
     T = tI(temp[5]);
 
-    ArrayList<Ride> rides = new ArrayList<Ride>(N);
+    rides = new ArrayList<Ride>(N);
 
-    ArrayList<Car> cars = new ArrayList<Car>(F);
+    cars = new ArrayList<Car>(F);
     for(int i = 0; i < F; i++) {
       cars.add(new Car(i));
     }
