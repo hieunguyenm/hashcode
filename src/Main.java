@@ -14,5 +14,9 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        for (Ride r : rides) {
+            System.out.println(r.id);
+        }
     }
 }
