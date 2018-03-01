@@ -10,6 +10,7 @@ public class Car {
 
   public void takeRide(Ride r) {
     this.currentRide = r;
+    taken = true;
   }
 
 }
